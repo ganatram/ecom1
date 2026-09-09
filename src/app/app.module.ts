@@ -1,18 +1,16 @@
+import { StoreModule } from './store/store.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    // register -  components,directives & pipes
+    AppComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, StoreModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent], // launch
 })
-export class AppModule { }
+export class AppModule {} // Root level entities should not interact or support Model level entity
