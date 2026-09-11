@@ -1,3 +1,6 @@
+import { OrderRepository } from './order.repository';
+import { Order } from './order.model';
+import { CartService } from './cart.model';
 import { RestDataSource } from './rest.datasource';
 import { NgModule } from '@angular/core';
 import { StaticDataSource } from './static.datasource';
@@ -7,8 +10,12 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   imports: [HttpClientModule],
   providers: [
-    ProductRepository,
     { provide: StaticDataSource, useClass: RestDataSource },
+    ProductRepository,
+    CartService,
+    Order,
+    OrderRepository,
+    RestDataSource,
   ], // register & launch injectables
 })
 export class ModelModule {}

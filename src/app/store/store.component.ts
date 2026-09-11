@@ -1,6 +1,8 @@
+import { CartService } from './../model/cart.model';
 import { Product } from './../model/product.model';
 import { Component } from '@angular/core';
 import { ProductRepository } from '../model/product.repository';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'store',
@@ -12,7 +14,11 @@ export class StoreComponent {
   public productsPerPage = 4;
   public selectedPage = 1;
 
-  constructor(private repository: ProductRepository) {}
+  constructor(
+    private repository: ProductRepository,
+    private cartservice: CartService,
+    private router: Router,
+  ) {}
 
   get products(): Product[] {
     let pageIndex = (this.selectedPage - 1) * this.productsPerPage;
@@ -51,6 +57,8 @@ export class StoreComponent {
   }
 
   addProductToCart(product: Product) {
-    console.log(product);
+    //console.log(product);
+    this.cartservice.addLine(product);
+    this.router.navigateByUrl('/cart'); // Hashbang -- events -> state changes (BrowserURL state)
   }
 }
