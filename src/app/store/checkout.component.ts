@@ -30,15 +30,15 @@ export class CheckoutComponent {
             this.orderSent = true;
             this.submitted = false;
           },
-          /*  error: (err) => {
+          error: (err) => {
             console.log('error caught in component');
             this.errorMessage = err;
             console.log(this.errorMessage.status);
             console.log(this.errorMessage.statusText);
-          }, */
-          /*  complete: () => {
+          },
+          complete: () => {
             console.log('post operation is done');
-          }, */
+          },
         });
     }
   }

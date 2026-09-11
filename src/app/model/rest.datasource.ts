@@ -16,17 +16,16 @@ export class RestDataSource {
 
   getProducts(): Observable<Product[]> {
     // return localhost:3500/products;
-    return this.http
-      .get<Product[]>(this.baseurl + 'products');
-      .pipe(
-        catchError((err) => {
-          console.error('error caught in service', err);
-          return throwError(err);
-        }),
-      );
+    return this.http.get<Product[]>(this.baseurl + 'products');
+    /*  .pipe(
+      catchError((err) => {
+        console.error('error caught in service', err);
+        return throwError(err);
+      }),
+    ); */
   }
 
   saveOrder(order: Order): Observable<Order> {
-    return this.http.post<Order>(this.baseurl + 'orders', order);
+    return this.http.post<Order>(this.baseurl + 'orders', order); // onNext();
   }
 }
