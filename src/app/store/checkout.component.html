@@ -28,7 +28,9 @@
       [(ngModel)]="order.name"
       #name="ngModel"
     />
-    <span *ngIf="submitted && name.invalid"> Please enter an name </span>
+    <span *ngIf="submitted && name.invalid" class="text-danger">
+      Please enter an name
+    </span>
   </div>
   <div class="form-group">
     <label>Address</label>
@@ -36,10 +38,35 @@
       class="form-control"
       name="address"
       required
+      minlength="3"
+      maxlength="7"
       [(ngModel)]="order.address"
       #address="ngModel"
     />
-    <span *ngIf="submitted && address.invalid"> Please enter an address </span>
+    <span
+      *ngIf="
+        submitted &&
+        address.errors?.['required'] &&
+        (address.dirty || address.touched)
+      "
+      class="text-danger"
+    >
+      Please enter some data
+    </span>
+
+    <span
+      *ngIf="submitted && address.errors?.['minlength']"
+      class="text-danger"
+    >
+      Please enter a minimum of 3 characters
+    </span>
+
+    <span
+      *ngIf="submitted && address.errors?.['maxlength']"
+      class="text-danger"
+    >
+      Please enter a maximum of 7 characters
+    </span>
   </div>
   <div class="form-group">
     <label>City</label>
@@ -50,7 +77,9 @@
       [(ngModel)]="order.city"
       #city="ngModel"
     />
-    <span *ngIf="submitted && city.invalid"> Please enter an city </span>
+    <span *ngIf="submitted && city.invalid" class="text-danger">
+      Please enter an city
+    </span>
   </div>
   <div class="form-group">
     <label>State</label>
@@ -61,7 +90,9 @@
       [(ngModel)]="order.state"
       #state="ngModel"
     />
-    <span *ngIf="submitted && state.invalid"> Please enter an state </span>
+    <span *ngIf="submitted && state.invalid" class="text-danger">
+      Please enter an state
+    </span>
   </div>
   <div class="form-group">
     <label>Zip/Postal Code</label>
@@ -72,7 +103,9 @@
       [(ngModel)]="order.zip"
       #zip="ngModel"
     />
-    <span *ngIf="submitted && zip.invalid"> Please enter an zip </span>
+    <span *ngIf="submitted && zip.invalid" class="text-danger">
+      Please enter an zip
+    </span>
   </div>
   <div class="form-group">
     <label>Country</label>
@@ -83,7 +116,9 @@
       [(ngModel)]="order.country"
       #country="ngModel"
     />
-    <span *ngIf="submitted && country.invalid"> Please enter an country </span>
+    <span *ngIf="submitted && country.invalid" class="text-danger">
+      Please enter an country
+    </span>
   </div>
   <div class="text-center">
     <button class="btn btn-secondary m-1" routerLink="/cart">Back</button>
