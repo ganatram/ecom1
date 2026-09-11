@@ -11,6 +11,7 @@ import { Component } from '@angular/core';
 export class CheckoutComponent {
   orderSent = false;
   submitted = false;
+  errorMessage: any;
 
   constructor(
     public repository: OrderRepository,
@@ -23,10 +24,20 @@ export class CheckoutComponent {
       this.repository
         .saveOrder(this.order)
 
-        .subscribe((order) => {
-          this.order.clear();
-          this.orderSent = true;
-          // this.submitted = false;
+        .subscribe({
+          next: (order) => {
+            this.order.clear();
+            this.orderSent = true;
+            this.submitted = false;
+          },
+          error: (error) => {
+            console.log('error caught in component');
+            this.errorMessage = error;
+            console.log(this.errorMessage);
+          },
+          complete: () => {
+            console.log('post operation is done');
+          },
         });
     }
   }
