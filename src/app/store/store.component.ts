@@ -13,6 +13,7 @@ export class StoreComponent {
   public selectedCategory: string | undefined = undefined;
   public productsPerPage = 4;
   public selectedPage = 1;
+  order: any;
 
   constructor(
     private repository: ProductRepository,

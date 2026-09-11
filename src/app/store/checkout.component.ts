@@ -33,7 +33,6 @@ export class CheckoutComponent {
           error: (error) => {
             console.log('error caught in component');
             this.errorMessage = error;
-            console.log(this.errorMessage);
           },
           complete: () => {
             console.log('post operation is done');
