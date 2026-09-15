@@ -1,3 +1,4 @@
+import { ProductEditorComponent } from './productEditor.Component';
 import { OrderTableComponent } from './orderTable.component ';
 import { ProductTableComponent } from './productTable.component';
 import { AdminComponent } from './admin.component';

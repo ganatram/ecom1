@@ -40,7 +40,7 @@ import { MyHttpInterceptorService } from './model/httpInterceptor-service';
         path: 'admin',
         // canActivate: [StoreFirstGuard],
         loadChildren: () =>
-          import('./admin/admin.module').then((m) => m.AdminModule),
+          import('./admin/admin.module').then((m) => m.AdminModule), // return AdminComponent
       },
       //component: AdminComponent
       {
