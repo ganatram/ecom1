@@ -40,9 +40,9 @@ import { MyHttpInterceptorService } from './model/httpInterceptor-service';
         path: 'admin',
         // canActivate: [StoreFirstGuard],
         loadChildren: () =>
-          import('./admin/admin.module').then((m) => m.AdminModule), // return AdminComponent
+          import('./admin/admin.module').then((m) => m.AdminModule), // return  //component: AdminComponent
       },
-      //component: AdminComponent
+
       {
         path: '**', // tracks/subscribes to the BrowserURL state
         redirectTo: '/store', // makes a state change in BrowserUrl state

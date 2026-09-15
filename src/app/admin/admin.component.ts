@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   standalone: false,
 })
 export class AdminComponent {
-  constructor() {}
+  constructor(private router: Router) {}
+
+  logout() {
+    this.router.navigateByUrl('/'); // switches to the default path
+  }
 }
