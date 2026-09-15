@@ -50,4 +50,20 @@ export class ProductRepository {
   getProduct(id: number | undefined): Product | undefined {
     return this.products.find((p) => p.id == id);
   }
+
+  saveProduct(product: Product) {
+    if (product.id == null || product.id == 0) {
+      this.dataSource
+        .saveProduct(product)
+        .subscribe((p) => this.products.push(p));
+    } else {
+      this.dataSource.updateProduct(product).subscribe((p) => {
+        this.products.splice(
+          this.products.findIndex((p) => p.id == product.id),
+          1,
+          product,
+        );
+      });
+    }
+  }
 }

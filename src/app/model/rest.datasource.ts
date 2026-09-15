@@ -33,4 +33,15 @@ export class RestDataSource {
     // publish...
     return this.http.delete<Product>(`${this.baseurl}products/${id}`);
   }
+
+  saveProduct(product: Product): Observable<Product> {
+    return this.http.post<Product>(this.baseurl + 'products', product);
+  }
+
+  updateProduct(product: Product): Observable<Product> {
+    return this.http.put<Product>(
+      `${this.baseurl}products/${product.id}`,
+      product,
+    );
+  }
 }

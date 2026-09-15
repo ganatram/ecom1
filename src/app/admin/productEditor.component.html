@@ -5,7 +5,7 @@
 >
   <h5>{{ editing ? "Edit" : "Create" }} Product</h5>
 </div>
-<form novalidate #form="ngForm">
+<form novalidate #f1="ngForm" (ngSubmit)="save(f1)">
   <div class="form-group">
     <label>Name</label>
     <input class="form-control" name="name" [(ngModel)]="product.name" />

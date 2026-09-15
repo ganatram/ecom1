@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../model/product.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'product-editor',
@@ -32,5 +33,9 @@ export class ProductEditorComponent {
         repository.getProduct(activeRoute.snapshot.params['id']),
       );
     }
+  }
+  save(form: NgForm) {
+    this.repository.saveProduct(this.product);
+    this.router.navigateByUrl('/admin/main/products');
   }
 }
