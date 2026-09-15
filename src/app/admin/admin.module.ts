@@ -1,3 +1,4 @@
+import { ProductEditorComponent } from './productEditor.component';
 import { OrderTableComponent } from './orderTable.component ';
 import { ProductTableComponent } from './productTable.component';
 import { AdminComponent } from './admin.component';
@@ -21,6 +22,14 @@ import { BrowserModule } from '@angular/platform-browser';
             component: ProductTableComponent,
           },
           {
+            path: 'products/:mode', // shared object {mode:'create'}
+            component: ProductEditorComponent,
+          },
+          {
+            path: 'products/:mode/:id', // shared object {mode:'edit',id:1}
+            component: ProductEditorComponent,
+          },
+          {
             path: 'orders',
             component: OrderTableComponent,
           },
@@ -37,7 +46,12 @@ import { BrowserModule } from '@angular/platform-browser';
     ]),
   ],
   exports: [],
-  declarations: [AdminComponent, ProductTableComponent, OrderTableComponent],
+  declarations: [
+    AdminComponent,
+    ProductTableComponent,
+    OrderTableComponent,
+    ProductEditorComponent,
+  ],
   providers: [],
 })
 export class AdminModule {}

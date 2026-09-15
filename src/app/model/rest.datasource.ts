@@ -28,4 +28,9 @@ export class RestDataSource {
   saveOrder(order: Order): Observable<Order> {
     return this.http.post<Order>(this.baseurl + 'orders', order); // onNext();
   }
+
+  deleteProduct(id: number | undefined): Observable<Product> {
+    // publish...
+    return this.http.delete<Product>(`${this.baseurl}products/${id}`);
+  }
 }

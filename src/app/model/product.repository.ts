@@ -8,7 +8,7 @@ export class ProductRepository {
   private products: Product[] = [];
   private categories: (string | undefined)[] = [];
 
-  constructor(private dataSource: StaticDataSource) {
+  constructor(private dataSource: RestDataSource) {
     dataSource.getProducts().subscribe((data) => {
       this.products = data;
       this.categories = data
@@ -36,5 +36,18 @@ export class ProductRepository {
 
   getCategories(): (string | undefined)[] {
     return this.categories;
+  }
+
+  deleteProduct(id: number | undefined) {
+    this.dataSource.deleteProduct(id).subscribe((p) => {
+      this.products.splice(
+        this.products.findIndex((p) => p.id == id),
+        1,
+      );
+    });
+  }
+
+  getProduct(id: number | undefined): Product | undefined {
+    return this.products.find((p) => p.id == id);
   }
 }
