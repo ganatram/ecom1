@@ -14,11 +14,14 @@ export class MyHttpInterceptorService implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
-    return next.handle(req).pipe(
-      catchError((err) => {
-        console.error('error caught in service', err);
-        return throwError(err);
-      }),
-    );
+    return next
+      .handle(req)
+
+      .pipe(
+        catchError((err) => {
+          console.error('error caught in interceptor', err);
+          return throwError(err);
+        }),
+      );
   }
 }

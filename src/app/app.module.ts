@@ -8,6 +8,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { StoreFirstGuard } from './storeFirst.guard';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MyHttpInterceptorService } from './model/httpInterceptor-service';
 
 @NgModule({
   declarations: [
@@ -20,27 +22,41 @@ import { StoreFirstGuard } from './storeFirst.guard';
     RouterModule.forRoot([
       // RouterTree -- Array of Route{}'s
       {
-        path: 'store', // tracks the BrowserURL state
-        canActivate: [StoreFirstGuard],
-        component: StoreComponent, // accordingly serves the feature component
-      },
-      {
-        path: 'cart', // tracks the BrowserURL state
-        canActivate: [StoreFirstGuard],
-        component: CartDetail, // accordingly serves the feature component
-      },
-      {
-        path: 'checkout', // tracks the BrowserURL state
+        path: 'store',
         // canActivate: [StoreFirstGuard],
-        component: CheckoutComponent, // accordingly serves the feature component
+        component: StoreComponent,
       },
       {
-        path: '**', // tracks the BrowserURL state
+        path: 'cart',
+        // canActivate: [StoreFirstGuard],
+        component: CartDetail,
+      },
+      {
+        path: 'checkout',
+        // canActivate: [StoreFirstGuard],
+        component: CheckoutComponent,
+      },
+      {
+        path: 'admin',
+        // canActivate: [StoreFirstGuard],
+        loadChildren: () =>
+          import('./admin/admin.module').then((m) => m.AdminModule),
+      },
+      //component: AdminComponent
+      {
+        path: '**', // tracks/subscribes to the BrowserURL state
         redirectTo: '/store', // makes a state change in BrowserUrl state
       },
     ]),
   ],
-  providers: [StoreFirstGuard],
+  providers: [
+    StoreFirstGuard,
+    {
+      provide: HTTP_INTERCEPTORS, // inbuilt dependency
+      useClass: MyHttpInterceptorService, // custom dependency
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent], // launch
 })
 export class AppModule {} // Root level entities should not interact or support Model level entity
